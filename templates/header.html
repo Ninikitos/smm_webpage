@@ -1,0 +1,44 @@
+<nav>
+    <div class="header">
+        <div class="header__menu-wrapper">
+            <button class="header__menu link__hover">menu</button>
+        </div>
+        <a class="header__logo" href="/" >hypermedia</a>
+        <div class="header__cta">
+            <p class="header__text">Boost My Brand Now!</p>
+            <button class="header__btn-cta">→</button>
+        </div>
+        <div class="header__mob">
+            <ul class="header__mob-items">
+                <li class="header__mob-item" id="menu-item-1">
+                    <a href="{% url 'about-us' %}" class="header__mob-link" id="menu-link-one">
+                        About us <span class="mobile-link-bkg"></span>
+                    </a>
+                </li>
+                <li class="header__mob-item" id="menu-item-2">
+                    <a href="{% url 'services' %}" class="header__mob-link" id="menu-link-two">
+                        Services <span class="mobile-link-bkg"></span>
+                    </a>
+                </li>
+                <li class="header__mob-item" id="menu-item-3">
+                    <a href="{% url 'portfolio' %}" class="header__mob-link" id="menu-link-three">
+                        Portfolio <span class="mobile-link-bkg"></span>
+                    </a>
+                </li>
+                <li class="header__mob-item" id="menu-item-4">
+                    <a href="{% url 'coaching' %}" class="header__mob-link" id="menu-link-four">
+                        Coaching 1:1 <span class="mobile-link-bkg"></span>
+                    </a>
+                </li>
+                <li class="header__mob-item" id="menu-item-5">
+                    <a href="{% url 'contact' %}" class="header__mob-link" id="menu-link-five">
+                        Contact <span class="mobile-link-bkg"></span>
+                    </a>
+                </li>
+            </ul>
+            <span class="decorators_first"></span>
+            <span class="decorators_second"></span>
+            <span class="decorators_third"></span>
+        </div>
+    </div>
+</nav>
