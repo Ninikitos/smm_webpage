@@ -21,6 +21,9 @@ body{
     line-height: 1.3;
     background: var(--page-background);
 }
+main{
+    position: relative;
+}
 h1, h2 {
     font-family: "Melodrama", sans-serif;
     font-size: 84px;

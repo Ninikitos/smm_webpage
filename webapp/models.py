@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.safestring import mark_safe
+from django.utils.text import slugify
+
 
 # Create your models here.
 
@@ -47,15 +49,12 @@ class AboutPageModel(models.Model):
     about_title = models.CharField(max_length=100)
     about_description = models.TextField()
     about_image_one = models.ImageField(upload_to='about_page_images/')
-    about_slug_one = models.SlugField(default="")
+    about_slug_one = models.SlugField(default="", blank=True)
     about_image_two = models.ImageField(upload_to='about_page_images/')
-    about_slug_two = models.SlugField(default="")
+    about_slug_two = models.SlugField(default="", blank=True)
 
     def __str__(self):
         return self.about_title
-
-    def safe_about_text(self):
-        return mark_safe(self.about_description)
 
     class Meta:
         verbose_name_plural = "About page"

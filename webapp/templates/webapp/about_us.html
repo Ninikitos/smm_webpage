@@ -46,13 +46,14 @@
             <div class="about__media-content">
                 <div class="about__media-left">
                     <span class="about__decor-start"></span>
-                    <img class="img__style" src="../../../media/{{ about_content.about_image_one }}" alt="photo: Hyper media promotion">
+                    <img class="img__style" src="../../../media/{{ about_content.about_image_one }}" alt="photo: {{ about_content.about_slug_one }}">
                 </div>
                 <div class="about__media-right">
-                    <img class="img__style" src="../../../media/{{ about_content.about_image_two }}" alt="photo: Smm promotion in la">
+                    <img class="img__style" src="../../../media/{{ about_content.about_image_two }}" alt="photo: {{ about_content.about_slug_two }}">
                 </div>
             </div>
         </div>
-        <span class="about-page__decor"></span>
+
     </section>
+    <span class="about-page__decor"></span>
 {% endblock %}

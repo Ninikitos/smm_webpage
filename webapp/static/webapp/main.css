@@ -91,6 +91,7 @@
     height: 64px;
     border-top: 1px solid var(--main);
     border-bottom: 1px solid var(--main);
+    background: var(--page-background);
 }
 .marquee{
     padding-left: 30px;
@@ -189,14 +190,13 @@
     overflow: visible;
 }
 .about-page__decor{
-    z-index: -1;
+    z-index: -2;
     position: absolute;
     width: 100%;
-    top: 0;
+    height: 100%;
     left: 0;
-    background: url("../../../static/img/hyper_media_pro_decor_bkg_about_page.png") center no-repeat;
-    background-size: cover;
-    overflow: visible;
+    bottom: -200px;
+    background: url("../../../static/img/hyper_media_pro_decor_bkg_about_page.png") center bottom / contain no-repeat;
 }
 
 
