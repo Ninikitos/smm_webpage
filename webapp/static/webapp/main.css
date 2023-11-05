@@ -164,7 +164,7 @@
     z-index: -1;
     top: -50px;
     right: -50px;
-    background: url("../../../static/img/hyper_media_pro_star_menu.png") top right / contain no-repeat;
+    background: url("../../../static/img/hyper_media_pro_decor_star_round.png") top right / contain no-repeat;
 }
 .about__media-right{
     width: 252px;
@@ -184,7 +184,7 @@
     position: absolute;
     bottom: -500px;
     left: 0;
-    background: url("img/index/about/hyper_media_pro_about_bkg_decor.png") center no-repeat;
+    background: url("../../../static/img/hyper_media_pro_decor_bkg_about_section.png") center no-repeat;
     background-size: cover;
     overflow: visible;
 }
@@ -194,7 +194,7 @@
     width: 100%;
     top: 0;
     left: 0;
-    background: url("../../../static/img/hyper_media_pro_about_decor.png") center no-repeat;
+    background: url("../../../static/img/hyper_media_pro_decor_bkg_about_page.png") center no-repeat;
     background-size: cover;
     overflow: visible;
 }
@@ -245,7 +245,7 @@
     height: 105px;
     top: -40px;
     left: 40px;
-    background: url("img/index/content/hyper_media_pro_decor_star.png") no-repeat;
+    background: url("../../../static/img/hyper_media_pro_decor_orange_star.png") no-repeat;
     transform: rotate(58deg);
 }
 .content__decor_two{
@@ -254,7 +254,7 @@
     height: 90px;
     bottom: 100px;
     right: 140px;
-    background: url("img/index/content/hyper_media_pro_decor_round_star.png") no-repeat;
+    background: url("../../../static/img/hyper_media_pro_decor_round_star_no_bkg.png") no-repeat;
 }
 .content__decor_three{
     z-index: -1;
@@ -263,7 +263,7 @@
     position: absolute;
     bottom: -200px;
     left: 0;
-    background: url("img/index/content/hyper_media_pro_background.png") no-repeat center;
+    background: url("../../../static/img/hyper_media_pro_decor_bkg_content_section.png") no-repeat center;
     background-size: cover;
     overflow: visible;
 }
@@ -389,7 +389,7 @@
     right: 80px;
     width: 83px;
     height: 96px;
-    background: url("img/index/about/hyper_media_pro_star_menu.png") 100% / contain no-repeat;
+    background: url("../../../static/img/hyper_media_pro_decor_star_round.png") 100% / contain no-repeat;
 }
 .info__decor_two{
     position: absolute;
@@ -397,5 +397,5 @@
     right: -257px;
     width: 480px;
     height: 480px;
-    background: url("img/index/info/hyper_media_pro_info_decor.png") no-repeat;
+    background: url("../../../static/img/hyper_media_pro_decor_bkg_info_section.png") no-repeat;
 }

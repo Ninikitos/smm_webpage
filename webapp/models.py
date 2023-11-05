@@ -47,7 +47,9 @@ class AboutPageModel(models.Model):
     about_title = models.CharField(max_length=100)
     about_description = models.TextField()
     about_image_one = models.ImageField(upload_to='about_page_images/')
+    about_slug_one = models.SlugField(default="")
     about_image_two = models.ImageField(upload_to='about_page_images/')
+    about_slug_two = models.SlugField(default="")
 
     def __str__(self):
         return self.about_title

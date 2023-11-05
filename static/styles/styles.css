@@ -92,7 +92,7 @@ nav{
     margin-right: 12px;
     display: inline-block;
     line-height: 1;
-    letter-spacing: 0.16px;
+    letter-spacing: 0.2px;
     text-transform: lowercase;
     background: linear-gradient(to bottom, transparent 60%, var(--accent-two) 50%);
     background-size: 100% 200%;
@@ -209,7 +209,7 @@ nav{
     position: absolute;
     bottom: 20px;
     left: 0;
-    background: url("../img/hyper_media_pro_decorround_spline.png") 100% 100% / 100% no-repeat;
+    background: url("../img/hyper_media_pro_decor_spline.png") 100% 100% / 100% no-repeat;
 }
 .decorators_second{
     width: 105px;
@@ -217,7 +217,7 @@ nav{
     position: absolute;
     bottom: 50%;
     left: 15%;
-    background: url("../img/hyper_media_pro_star_menu.png") center / cover no-repeat;
+    background: url("../img/hyper_media_pro_decor_star_round.png") center / cover no-repeat;
 }
 .decorators_third{
     width: 90px;
