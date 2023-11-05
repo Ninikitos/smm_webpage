@@ -55,6 +55,8 @@
     border: 1px solid var(--main);
 }
 .cta__btn-style{
+    position: relative;
+    z-index: 1;
     padding: 12px 38px;
     border-radius: 22px;
     border: 1px solid var(--main);
@@ -71,6 +73,9 @@
 .cta__btn-style:active{
     box-shadow: var(--main) 1px 3px 0;
 }
+.fixed{
+    overflow: hidden;
+}
 
 /*======HERO======*/
 .hero{
@@ -85,6 +90,7 @@
 .marquee__wrapper{
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     overflow: hidden;
     padding: 10px 0;
     width: 100%;
@@ -114,7 +120,7 @@
     }
 }
 
-/*======ABOUT======*/
+/*======ABOUT-INDEX and ABOUT_US-PAGE======*/
 .about{
     position: relative;
     width: 100%;
@@ -399,3 +405,113 @@
     height: 480px;
     background: url("../../../static/img/hyper_media_pro_decor_bkg_info_section.png") no-repeat;
 }
+
+
+/*======SERVICE-PAGE======*/
+.marquee__wrapper_no-top-border{
+    border-top: 0;
+}
+.service{
+    width: 100%;
+    background-color: var(--section-background);
+}
+.service__content{
+    max-width: 100%;
+}
+.service__content-block{
+    display: grid;
+    grid-template-columns: minmax(370px, 1fr) minmax(370px, 1fr);
+    overflow: hidden;
+    border-bottom: 1px solid var(--main);
+}
+.service__image-wrapper{
+    order: 1;
+    min-height: 700px;
+    border-right: 1px solid var(--main);
+    border-left: 0;
+}
+.service__image-wrapper_border{
+    border-right: 0;
+    border-left: 1px solid var(--main);
+}
+.service__image-wrapper_order{
+    order: 2;
+}
+.service__content-wrapper{
+    order: 2;
+    position: relative;
+    padding-top: 75px;
+    margin-left: 40px;
+}
+.service__content-wrapper_order{
+    order: 1;
+}
+.service__content-bkg{
+    position: absolute;
+    display: inline;
+    bottom: 0;
+    right: 0;
+    width: 80%;
+    height: 80%;
+    background: url("../../../static/img/hyper_media_pro_decor_bkg_service_one.png") right bottom / contain no-repeat;
+    overflow: hidden;
+}
+.service__content-star{
+    position: absolute;
+    display: inline;
+    bottom: 100px;
+    right: 50px;
+    width: 120px;
+    height: 120px;
+    background: url("../../../static/img/hyper_media_pro_decor_round_star_no_bkg.png")center / contain no-repeat;
+    overflow: hidden;
+}
+.services__block-title{
+    position: relative;
+    max-width: 500px;
+    margin-bottom: 35px;
+}
+.service__extra-title {
+    text-transform: lowercase;
+    z-index: 1;
+    position: absolute;
+    display: inline-block;
+    top: -30px;
+    left: 40%;
+    font-size: 32px;
+    line-height: 1.2;
+    font-family: "Melodrama", sans-serif;
+    font-weight: 600;
+}
+.service__extra-title::before {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    left: -25%;
+    width: 150%;
+    height: 45px;
+    background-color: var(--accent-one);
+    border: 1px solid var(--main);
+    transform: rotate(-3deg);
+    border-radius: 50%;
+    z-index: -1;
+}
+.service__list{
+    margin-bottom: 35px;
+}
+.service__list-item::before{
+    content: "";
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    background: var(--accent-two);
+    border: 2px solid var(--main);
+    border-radius: 100%;
+    margin-right: 10px;
+}
+.service__list-item:not(:last-child){
+    margin-bottom: 12px;
+}
+
+
+

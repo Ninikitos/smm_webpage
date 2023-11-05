@@ -58,3 +58,31 @@ class AboutPageModel(models.Model):
 
     class Meta:
         verbose_name_plural = "About page"
+
+
+class ServicePageModel(models.Model):
+    service_image_one = models.ImageField(upload_to='service_page_images/')
+    service_slug_one = models.SlugField(default="", blank=True)
+    service_title_one = models.CharField(max_length=255)
+    service_list_one = models.TextField()
+
+    service_image_two = models.ImageField(upload_to='service_page_images/')
+    service_slug_two = models.SlugField(default="", blank=True)
+    service_title_two = models.CharField(max_length=255)
+    service_list_two = models.TextField()
+
+    service_image_three = models.ImageField(upload_to='service_page_images/')
+    service_slug_three = models.SlugField(default="", blank=True)
+    service_title_three = models.CharField(max_length=255)
+    service_list_three = models.TextField()
+
+    service_image_four = models.ImageField(upload_to='service_page_images/')
+    service_slug_four = models.SlugField(default="", blank=True)
+    service_title_four = models.CharField(max_length=255)
+    service_list_four = models.TextField()
+
+    def __str__(self):
+        return "Service page"
+
+    class Meta:
+        verbose_name_plural = "Service page"

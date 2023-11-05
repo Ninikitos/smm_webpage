@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import AboutPageModel
+from .models import AboutPageModel, ServicePageModel
 
 # Create your views here.
 def index(request):
@@ -13,7 +13,10 @@ def about_us(request):
 
 
 def services(request):
-    return render(request, "webapp/services.html", {})
+    service_content = ServicePageModel.objects.first()
+    return render(request, "webapp/services.html", {
+        'service_content': service_content
+    })
 
 
 def portfolio(request):

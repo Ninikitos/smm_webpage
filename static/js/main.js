@@ -1,3 +1,4 @@
+const nav = document.querySelector('nav');
 const mobileMenu = document.querySelector(".header__mob");
 const mobileButton = document.querySelector(".header__menu.link__hover");
 const logoLink = document.querySelector('.header__logo');
@@ -25,15 +26,24 @@ function toggleReveal() {
 function toggleMobileMenu() {
     mobileButton.classList.toggle('link__hover_active');
     mobileMenu.classList.toggle('active');
+    document.body.classList.toggle('fixed');
     toggleReveal();
 }
 
 logoLink.addEventListener('click', () => {
     mobileMenu.classList.remove('active');
     mobileButton.classList.remove('link__hover_active');
+    document.body.classList.remove('fixed');
+    menuItemOne.classList.remove('reveal');
+    menuItemTwo.classList.remove('reveal');
+    menuItemThree.classList.remove('reveal');
+    menuItemFour.classList.remove('reveal');
+    menuItemFive.classList.remove('reveal');
 });
 
-mobileButton.addEventListener('click', toggleMobileMenu);
+mobileButton.addEventListener('click', () =>{
+    toggleMobileMenu();
+});
 
 menuLinkOne.addEventListener('click', () => {
     toggleMobileMenu();

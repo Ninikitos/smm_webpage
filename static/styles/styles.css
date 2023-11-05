@@ -21,6 +21,9 @@ body{
     line-height: 1.3;
     background: var(--page-background);
 }
+header{
+    height: 60px;
+}
 main{
     position: relative;
 }

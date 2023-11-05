@@ -10,5 +10,79 @@
 {% endblock %}
 
 {% block main_content %}
-	<h1>SERVICES</h1>
+	<div class="marquee__wrapper marquee__wrapper_no-top-border">
+            <div class="marquee">
+                <span>
+                    Elevate Your Online Presence with Our Full Service Social Media Marketing Solutions Today!
+                </span>
+            </div>
+            <div class="marquee">
+                <span>
+                    Elevate Your Online Presence with Our Full Service Social Media Marketing Solutions Today!
+                </span>
+            </div>
+            <div class="marquee">
+                <span>
+                    Elevate Your Online Presence with Our Full Service Social Media Marketing Solutions Today!
+                </span>
+            </div>
+        </div>
+    <section class="service">
+        <ul class="service__content">
+            <li class="service__content-block">
+                <div class="service__image-wrapper" style="background: url('../../../media/{{ service_content.service_image_one }}') center / cover no-repeat"></div>
+                <div class="service__content-wrapper">
+                    <span class="service__content-bkg"></span>
+                    <h2 class="services__block-title">
+                        <span class="service__extra-title">&&nbsp;management</span>
+                        {{ service_content.service_title_one }}
+                    </h2>
+                    <ul class="service__list">
+                        {{ service_content.service_list_one|safe }}
+                    </ul>
+                    <button class="cta__btn-style">Start My Social Success</button>
+                </div>
+            </li>
+            <li class="service__content-block">
+                <div class="service__image-wrapper service__image-wrapper_order service__image-wrapper_border" style="background: url('../../../media/{{ service_content.service_image_two }}') center / cover no-repeat"></div>
+                <div class="service__content-wrapper service__content-wrapper_order">
+                    <span class="service__content-star"></span>
+                    <h2 class="services__block-title">
+                        <span class="service__extra-title">&&nbsp;consulting</span>
+                        {{ service_content.service_title_two }}
+                    </h2>
+                    <ul class="service__list">
+                        {{ service_content.service_list_two|safe }}
+                    </ul>
+                    <button class="cta__btn-style">Start My Social Success</button>
+                </div>
+            </li>
+            <li class="service__content-block">
+                <div class="service__image-wrapper" style="background: url('../../../media/{{ service_content.service_image_three }}') center / cover no-repeat"></div>
+                <div class="service__content-wrapper">
+                    <span class="service__content-bkg"></span>
+                    <h2 class="services__block-title">
+                        {{ service_content.service_title_three }}
+                    </h2>
+                    <ul class="service__list">
+                        {{ service_content.service_list_three|safe }}
+                    </ul>
+                    <button class="cta__btn-style">Start My Social Success</button>
+                </div>
+            </li>
+            <li class="service__content-block">
+                <div class="service__image-wrapper service__image-wrapper_order service__image-wrapper_border" style="background: url('../../../media/{{ service_content.service_image_four }}') center / cover no-repeat"></div>
+                <div class="service__content-wrapper service__content-wrapper_order">
+                    <span class="service__content-star"></span>
+                    <h2 class="services__block-title">
+                        {{ service_content.service_title_four }}
+                    </h2>
+                    <ul class="service__list">
+                        {{ service_content.service_list_four|safe }}
+                    </ul>
+                    <button class="cta__btn-style">Start My Social Success</button>
+                </div>
+            </li>
+        </ul>
+    </section>
 {% endblock %}
