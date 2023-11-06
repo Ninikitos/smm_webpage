@@ -1,4 +1,5 @@
 from django.db import models
+from PIL import Image
 from django.utils.safestring import mark_safe
 from django.utils.text import slugify
 
@@ -61,28 +62,44 @@ class AboutPageModel(models.Model):
 
 
 class ServicePageModel(models.Model):
-    service_image_one = models.ImageField(upload_to='service_page_images/')
+    service_image_one = models.ImageField(upload_to='service_page_images/', null=True)
     service_slug_one = models.SlugField(default="", blank=True)
     service_title_one = models.CharField(max_length=255)
     service_list_one = models.TextField()
 
-    service_image_two = models.ImageField(upload_to='service_page_images/')
+    service_image_two = models.ImageField(upload_to='service_page_images/', null=True)
     service_slug_two = models.SlugField(default="", blank=True)
     service_title_two = models.CharField(max_length=255)
     service_list_two = models.TextField()
 
-    service_image_three = models.ImageField(upload_to='service_page_images/')
+    service_image_three = models.ImageField(upload_to='service_page_images/', null=True)
     service_slug_three = models.SlugField(default="", blank=True)
     service_title_three = models.CharField(max_length=255)
     service_list_three = models.TextField()
 
-    service_image_four = models.ImageField(upload_to='service_page_images/')
+    service_image_four = models.ImageField(upload_to='service_page_images/', null=True)
     service_slug_four = models.SlugField(default="", blank=True)
     service_title_four = models.CharField(max_length=255)
     service_list_four = models.TextField()
 
     def __str__(self):
         return "Service page"
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        if self.service_image_one:
+            # Open the image using Pillow
+            img = Image.open(self.service_image_one.path)
+
+            # Resize the image to a specific size
+            new_width = 680  # Set the desired width
+            new_height = 800  # Set the desired height
+            img = img.resize((new_width, new_height), Image.ANTIALIAS)
+
+            # Save the resized image back to the same path
+            img.save(self.service_image_one.path)
+
 
     class Meta:
         verbose_name_plural = "Service page"

@@ -3,7 +3,32 @@ Glonal
 
 Index
 1. Я переиспользовал секцию в других страницах, просто добавляя другие классы. Правильно?
+2. Звездочку на верх картинку loop for
 
 Service page
-1. Как сдлать картинку респонсив, но при этом не потерять alt атрибут.
-2. Как сделать чтобы края картинок прилегали четко с условием border свойста
+1. Как сдлать картинку респонсив, но при этом не потерять alt атрибут. - через pos: relative
+пример ниже
+2. Как сделать чтобы края картинок прилегали четко с условием border свойста - добавить класс можификатор
+только одному левому блоку
+
+
+Admin
+Change way how <li> parses. Style parent element
+Style underline text with <u> through parent element
+Width and Height on back end on img
+
+Proportion of an img
+.test_block{
+    width: 50%;
+    padding-bottom: 35%;
+    position: relative;
+}
+.test_block img{
+    width: 100%;
+    height: 100%
+    position: absolute:
+    left: 0;
+    top: 0;
+    object-fit: cover;
+    object-position: center;
+}

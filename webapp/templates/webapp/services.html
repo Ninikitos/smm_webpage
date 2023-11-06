@@ -30,7 +30,10 @@
     <section class="service">
         <ul class="service__content">
             <li class="service__content-block">
-                <div class="service__image-wrapper" style="background: url('../../../media/{{ service_content.service_image_one }}') center / cover no-repeat"></div>
+                <div class="service__image-wrapper service__content_border">
+                    <img src="../../../media/{{ service_content.service_image_one }}"
+                         alt="photo: {{ service_content.service_slug_one }}">
+                </div>
                 <div class="service__content-wrapper">
                     <span class="service__content-bkg"></span>
                     <h2 class="services__block-title">
@@ -44,8 +47,7 @@
                 </div>
             </li>
             <li class="service__content-block">
-                <div class="service__image-wrapper service__image-wrapper_order service__image-wrapper_border" style="background: url('../../../media/{{ service_content.service_image_two }}') center / cover no-repeat"></div>
-                <div class="service__content-wrapper service__content-wrapper_order">
+                <div class="service__content-wrapper service__content-wrapper_order service__content_border">
                     <span class="service__content-star"></span>
                     <h2 class="services__block-title">
                         <span class="service__extra-title">&&nbsp;consulting</span>
@@ -56,9 +58,16 @@
                     </ul>
                     <button class="cta__btn-style">Start My Social Success</button>
                 </div>
+                <div class="service__image-wrapper">
+                    <img src="../../../media/{{ service_content.service_image_two }}"
+                         alt="photo: {{ service_content.service_slug_two }}">
+                </div>
             </li>
             <li class="service__content-block">
-                <div class="service__image-wrapper" style="background: url('../../../media/{{ service_content.service_image_three }}') center / cover no-repeat"></div>
+                <div class="service__image-wrapper service__content_border">
+                    <img src="../../../media/{{ service_content.service_image_three }}"
+                         alt="photo: {{ service_content.service_slug_three }}">
+                </div>
                 <div class="service__content-wrapper">
                     <span class="service__content-bkg"></span>
                     <h2 class="services__block-title">
@@ -71,16 +80,20 @@
                 </div>
             </li>
             <li class="service__content-block">
-                <div class="service__image-wrapper service__image-wrapper_order service__image-wrapper_border" style="background: url('../../../media/{{ service_content.service_image_four }}') center / cover no-repeat"></div>
-                <div class="service__content-wrapper service__content-wrapper_order">
+                <div class="service__content-wrapper service__content-wrapper_order service__content_border">
                     <span class="service__content-star"></span>
                     <h2 class="services__block-title">
+                        <span class="service__extra-title">&&nbsp;consulting</span>
                         {{ service_content.service_title_four }}
                     </h2>
                     <ul class="service__list">
                         {{ service_content.service_list_four|safe }}
                     </ul>
                     <button class="cta__btn-style">Start My Social Success</button>
+                </div>
+                <div class="service__image-wrapper">
+                    <img src="../../../media/{{ service_content.service_image_four }}"
+                         alt="photo: {{ service_content.service_slug_four }}">
                 </div>
             </li>
         </ul>

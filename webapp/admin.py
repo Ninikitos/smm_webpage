@@ -5,20 +5,26 @@ from django.utils.text import slugify
 
 from .models import AboutPageModel, ServicePageModel, CoachingPageModel
 
+def update_slug_from_image(obj, image_fields, slug_fields):
+    for i, image_field in enumerate(image_fields):
+        image = getattr(obj, image_field)
+        slug = getattr(obj, slug_fields[i])
+
+        if image and hasattr(image, 'file') and hasattr(image.file, 'name'):
+            image_filename = os.path.basename(image.file.name)
+            image_filename = image_filename.replace("cfakepath", "").rsplit('.', 1)[0]
+
+            if not slug or slug != slugify(image_filename):
+                setattr(obj, slug_fields[i], slugify(image_filename))
+
+    obj.save()
+
 class AboutPageAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
-        image_filenames = [os.path.basename(obj.about_image_one.name), os.path.basename(obj.about_image_two.name)]
+        image_fields = ['about_image_one', 'about_image_two']
+        slug_fields = ['about_slug_one', 'about_slug_two']
 
-        for i, image_filename in enumerate(image_filenames):
-            image_filenames[i] = image_filename.replace("cfakepath", "").rsplit('.', 1)[0]
-
-            if i == 0 and not obj.about_slug_one:
-                obj.about_slug_one = slugify(image_filenames[i])
-            elif i == 1 and not obj.about_slug_two:
-                obj.about_slug_two = slugify(image_filenames[i])
-
-        super().save_model(request, obj, form, change)
-
+        update_slug_from_image(obj, image_fields, slug_fields)
 
 class ServicePageAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
@@ -36,15 +42,7 @@ class ServicePageAdmin(admin.ModelAdmin):
             'service_slug_four',
         ]
 
-        for image_field, slug_field in zip(image_fields, slug_fields):
-            image_filename = os.path.basename(getattr(obj, image_field).name)
-            image_filename = image_filename.replace("cfakepath", "").rsplit('.', 1)[0]
-
-            if not getattr(obj, slug_field):
-                setattr(obj, slug_field, slugify(image_filename))
-
-        super().save_model(request, obj, form, change)
-
+        update_slug_from_image(obj, image_fields, slug_fields)
 
 class CoachingPageAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
