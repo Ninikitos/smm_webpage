@@ -86,3 +86,19 @@ class ServicePageModel(models.Model):
 
     class Meta:
         verbose_name_plural = "Service page"
+
+
+class CoachingPageModel(models.Model):
+
+    coaching_title = models.CharField(max_length=100)
+    coaching_description = models.TextField()
+    coaching_image_one = models.ImageField(upload_to='about_page_images/')
+    coaching_slug_one = models.SlugField(default="", blank=True)
+    coaching_image_two = models.ImageField(upload_to='about_page_images/')
+    coaching_slug_two = models.SlugField(default="", blank=True)
+
+    def __str__(self):
+        return self.coaching_title
+
+    class Meta:
+        verbose_name_plural = "Coaching page"

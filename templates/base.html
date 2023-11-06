@@ -16,9 +16,6 @@
     <header>{% include 'header.html' %}</header>
     <main class="transition-fade" id="swup">
         {% block main_content %}{% endblock %}
-        <form id="removeClassForm" method="post">
-            {% csrf_token %}
-        </form>
     </main>
     <footer>{% include 'footer.html' %}</footer>
     <script src="https://unpkg.com/swup@4"></script>

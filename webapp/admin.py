@@ -3,7 +3,7 @@ import os
 from django.contrib import admin
 from django.utils.text import slugify
 
-from .models import AboutPageModel, ServicePageModel
+from .models import AboutPageModel, ServicePageModel, CoachingPageModel
 
 class AboutPageAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
@@ -46,5 +46,22 @@ class ServicePageAdmin(admin.ModelAdmin):
         super().save_model(request, obj, form, change)
 
 
+class CoachingPageAdmin(admin.ModelAdmin):
+    def save_model(self, request, obj, form, change):
+        image_filenames = [os.path.basename(obj.coaching_image_one.name), os.path.basename(obj.coaching_image_two.name)]
+
+        for i, image_filename in enumerate(image_filenames):
+            image_filenames[i] = image_filename.replace("cfakepath", "").rsplit('.', 1)[0]
+
+            if i == 0 and not obj.coaching_slug_one:
+                obj.coaching_slug_one = slugify(image_filenames[i])
+            elif i == 1 and not obj.coaching_slug_two:
+                obj.coaching_slug_two = slugify(image_filenames[i])
+
+        super().save_model(request, obj, form, change)
+
+
+
 admin.site.register(AboutPageModel, AboutPageAdmin)
 admin.site.register(ServicePageModel, ServicePageAdmin)
+admin.site.register(CoachingPageModel, CoachingPageAdmin)
