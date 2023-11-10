@@ -1,4 +1,4 @@
-const nav = document.querySelector('nav');
+// MENU
 const mobileMenu = document.querySelector(".header__mob");
 const mobileButton = document.querySelector(".header__menu.link__hover");
 const logoLink = document.querySelector('.header__logo');
@@ -69,3 +69,20 @@ menuLinkFive.addEventListener('click', () => {
     toggleMobileMenu();
     menuLinkFive.classList.toggle('reveal');
 });
+
+// Custom form select
+const arrowDownServices = document.querySelector("#arrow-down-services");
+const selectButtonServices = document.querySelector("#custom-select-services");
+const selectionContainerServices = document.querySelector("#container-services");
+selectButtonServices.addEventListener('click', () => {
+    selectionContainerServices.classList.toggle("open-selection");
+    arrowDownServices.classList.toggle("open-arrow");
+})
+
+const arrowDownSocials = document.querySelector("#arrow-down-socials");
+const selectButtonSocials =document.querySelector("#custom-select-socials");
+const selectionContainerSocials = document.querySelector("#container-socials");
+selectButtonSocials.addEventListener('click', () => {
+    selectionContainerSocials.classList.toggle("open-selection");
+    arrowDownSocials.classList.toggle("open-arrow");
+})

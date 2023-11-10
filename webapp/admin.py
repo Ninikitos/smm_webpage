@@ -14,8 +14,11 @@ def update_slug_from_image(obj, image_fields, slug_fields):
             image_filename = os.path.basename(image.file.name)
             image_filename = image_filename.replace("cfakepath", "").rsplit('.', 1)[0]
 
-            if not slug or slug != slugify(image_filename):
+            # Only set slug if it's different from the slug derived from the image name
+            if not slug:
                 setattr(obj, slug_fields[i], slugify(image_filename))
+            elif slug != slugify(image_filename):
+                setattr(obj, slug_fields[i], slug)
 
     obj.save()
 
@@ -46,17 +49,10 @@ class ServicePageAdmin(admin.ModelAdmin):
 
 class CoachingPageAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
-        image_filenames = [os.path.basename(obj.coaching_image_one.name), os.path.basename(obj.coaching_image_two.name)]
+        image_fields = ['coaching_image_one', 'coaching_image_two']
+        slug_fields = ['coaching_slug_one', 'coaching_slug_two']
 
-        for i, image_filename in enumerate(image_filenames):
-            image_filenames[i] = image_filename.replace("cfakepath", "").rsplit('.', 1)[0]
-
-            if i == 0 and not obj.coaching_slug_one:
-                obj.coaching_slug_one = slugify(image_filenames[i])
-            elif i == 1 and not obj.coaching_slug_two:
-                obj.coaching_slug_two = slugify(image_filenames[i])
-
-        super().save_model(request, obj, form, change)
+        update_slug_from_image(obj, image_fields, slug_fields)
 
 
 
