@@ -9,7 +9,8 @@ urlpatterns = [
     path('services', views.services, name='services'),
     path('portfolio', views.portfolio, name='portfolio'),
     path('coaching', views.coaching, name='coaching'),
-    path('contact', views.contact, name='contact')
+    path('contact', views.contact, name='contact'),
+    path('thank_you', views.thank_you, name='thank-you')
 ]
 
 if settings.DEBUG:

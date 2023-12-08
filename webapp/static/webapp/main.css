@@ -638,6 +638,9 @@ form span{
 .form__custom-input-container{
     position: relative;
 }
+.form__custom-select{
+    width: 100%;
+}
 .form__custom-select:hover{
     cursor: pointer;
 }
@@ -675,8 +678,12 @@ form span{
     opacity: 1;
     top: 80px;
 }
-.form__checkbox-list > li:not(:last-child){
+.form__checkbox-list > *:not(:last-child){
     margin-bottom: 14px;
+}
+.form__checkbox-list_flex{
+    display: flex;
+    flex-direction: column;
 }
 .form__input_textarea{
     width: 100%;

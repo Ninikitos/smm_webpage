@@ -80,7 +80,7 @@ selectButtonServices.addEventListener('click', () => {
 })
 
 const arrowDownSocials = document.querySelector("#arrow-down-socials");
-const selectButtonSocials =document.querySelector("#custom-select-socials");
+const selectButtonSocials = document.querySelector("#custom-select-socials");
 const selectionContainerSocials = document.querySelector("#container-socials");
 selectButtonSocials.addEventListener('click', () => {
     selectionContainerSocials.classList.toggle("open-selection");

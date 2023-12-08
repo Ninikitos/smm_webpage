@@ -1,3 +1,10 @@
 Index
 1. On big screens background images got cut
 2. On big screens background images are blurry
+3. Make Model for idex
+
+Contact
+1. Drop down dont open on initial page load
+
+Model
+1. Remove slug DB entries

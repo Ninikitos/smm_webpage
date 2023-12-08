@@ -3,7 +3,7 @@ import os
 from django.contrib import admin
 from django.utils.text import slugify
 
-from .models import AboutPageModel, ServicePageModel, CoachingPageModel
+from .models import AboutPageModel, ServicePageModel, CoachingPageModel, ClientInformation
 
 def update_slug_from_image(obj, image_fields, slug_fields):
     for i, image_field in enumerate(image_fields):
@@ -55,7 +55,7 @@ class CoachingPageAdmin(admin.ModelAdmin):
         update_slug_from_image(obj, image_fields, slug_fields)
 
 
-
 admin.site.register(AboutPageModel, AboutPageAdmin)
 admin.site.register(ServicePageModel, ServicePageAdmin)
 admin.site.register(CoachingPageModel, CoachingPageAdmin)
+admin.site.register(ClientInformation)
