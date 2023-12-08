@@ -2,6 +2,7 @@ from django.db import models
 from PIL import Image
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
+from datetime import date
 
 
 # Create your models here.
@@ -59,8 +60,8 @@ class AboutPageModel(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        resize_image(self.coaching_image_one, 315, 368)
-        resize_image(self.coaching_image_two, 252, 294)
+        resize_image(self.about_image_one, 315, 368)
+        resize_image(self.about_image_two, 252, 294)
 
     class Meta:
         verbose_name_plural = "About page"
@@ -120,6 +121,27 @@ class CoachingPageModel(models.Model):
     class Meta:
         verbose_name_plural = "Coaching page"
 
+# Contact form related data
+class ClientInformation(models.Model):
+    name = models.CharField(max_length=50)
+    lastname = models.CharField(max_length=50)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    company = models.CharField(max_length=50, blank=True)
+    scope = models.CharField(max_length=100, blank=True)
+    work = models.URLField(blank=True)
+    social = models.CharField(max_length=50, blank=True)
+    services = models.CharField(max_length=400, blank=True)
+    is_social_agency = models.CharField(max_length=3, choices=[("Yes", "Yes"), ("No", "No")])
+    budget = models.IntegerField(default=0, blank=True, null=True)
+    start_date = models.DateField(default=date.today, blank=True, null=True)
+    message = models.TextField(max_length=1200, blank=True)
+
+    def __str__(self):
+        return f"{self.name}, {self.lastname}"
+
+    class Meta:
+        verbose_name_plural = "Client information"
 
 
 def resize_image(image_field, new_width, new_height):
