@@ -3,7 +3,13 @@ import os
 from django.contrib import admin
 from django.utils.text import slugify
 
-from .models import AboutPageModel, ServicePageModel, CoachingPageModel, ClientInformation
+from .models import (AboutPageModel,
+                     ServicePageModel,
+                     CoachingPageModel,
+                     ClientInformation,
+                     ProjectModel,
+                     ProjectImagesModel,
+                     ProjectVideosModel)
 
 def update_slug_from_image(obj, image_fields, slug_fields):
     for i, image_field in enumerate(image_fields):
@@ -54,8 +60,34 @@ class CoachingPageAdmin(admin.ModelAdmin):
 
         update_slug_from_image(obj, image_fields, slug_fields)
 
+class ProjectImagesAdmin(admin.ModelAdmin):
+
+    list_display = ('name', 'project_name')
+    list_filter = ('project__name',)
+    def project_name(self, obj):
+        return obj.project.name if obj.project else ''
+    project_name.short_description = 'Project Name'
+
+    def save_model(self, request, obj, form, change):
+        image_field = ['image']
+        slug_field = ['image_slug']
+
+        update_slug_from_image(obj, image_field, slug_field)
+
+class ProjectVideosAdmin(admin.ModelAdmin):
+    list_display = ('name', 'project_name')
+    list_filter = ('project__name',)
+    def project_name(self, obj):
+        return obj.project.name if obj.project else ''
+    project_name.short_description = 'Project Name'
+class ClientInformationAdmin(admin.ModelAdmin):
+    list_display = ('name', 'lastname', 'email', 'phone')
 
 admin.site.register(AboutPageModel, AboutPageAdmin)
 admin.site.register(ServicePageModel, ServicePageAdmin)
 admin.site.register(CoachingPageModel, CoachingPageAdmin)
-admin.site.register(ClientInformation)
+admin.site.register(ClientInformation, ClientInformationAdmin)
+admin.site.register(ProjectModel)
+admin.site.register(ProjectImagesModel, ProjectImagesAdmin)
+admin.site.register(ProjectVideosModel, ProjectVideosAdmin)
+

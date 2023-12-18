@@ -1,53 +1,24 @@
+from django.utils import timezone
+
 from django.db import models
 from PIL import Image
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
-from datetime import date
+from django.utils.text import slugify
 
 
-# Create your models here.
-
-# class ProjectsModel(models.Model):
-#     title = models.CharField(max_length=255)
-#     cover_image = models.ImageField(upload_to='home_page_images/')
-#     description = models.CharField(max_length=255)
-#
-#     def __str__(self):
-#         return f'Case for {self.home_page.section_three_title}'
-#
-#
 # class HomePageModel(models.Model):
 #     # Section One
-#     section_one_page_name = models.CharField(max_length=255)
-#     section_one_title = models.CharField(max_length=255)
 #     section_one_text = models.TextField()
-#     section_one_img_1 = models.ImageField(upload_to='home_page_images/')
-#     section_one_img_1_alt = models.CharField(max_length=255)
-#     section_one_img_2 = models.ImageField(upload_to='home_page_images/')
-#     section_one_img_2_alt = models.CharField(max_length=255)
-#     section_one_cta = models.CharField(max_length=255)
 #
 #     # Section Two
-#     section_two_title = models.CharField(max_length=255)
-#     section_two_text = models.TextField()
-#     section_two_img = models.ImageField(upload_to='home_page_images/')
-#     section_two_img_alt = models.CharField(max_length=255)
-#     section_two_cta = models.CharField(max_length=255)
-#
-#     # Section Three
-#     section_three_title = models.CharField(max_length=255)
-#     section_three_projects = models.ForeignKey(ProjectsModel, on_delete=models.CASCADE)
-#
-#     # Section Four
-#     section_four_title = models.CharField(max_length=255)
-#     section_four_cta = models.CharField(max_length=255)
+#     section_two_title = models.CharField(max_length=1200)
 #
 #     def __str__(self):
-#         return self.section_one_page_name
-#
+#         return "Home page"
+
 
 class AboutPageModel(models.Model):
-
     about_title = models.CharField(max_length=100)
     about_description = models.TextField()
     about_image_one = models.ImageField(upload_to='about_page_images/', null=True)
@@ -65,7 +36,6 @@ class AboutPageModel(models.Model):
 
     class Meta:
         verbose_name_plural = "About page"
-
 
 class ServicePageModel(models.Model):
     service_image_one = models.ImageField(upload_to='service_page_images/', null=True)
@@ -101,7 +71,6 @@ class ServicePageModel(models.Model):
     class Meta:
         verbose_name_plural = "Service page"
 
-
 class CoachingPageModel(models.Model):
     coaching_title = models.CharField(max_length=100)
     coaching_description = models.TextField()
@@ -121,7 +90,6 @@ class CoachingPageModel(models.Model):
     class Meta:
         verbose_name_plural = "Coaching page"
 
-# Contact form related data
 class ClientInformation(models.Model):
     name = models.CharField(max_length=50)
     lastname = models.CharField(max_length=50)
@@ -134,8 +102,8 @@ class ClientInformation(models.Model):
     services = models.CharField(max_length=400, blank=True)
     is_social_agency = models.CharField(max_length=3, choices=[("Yes", "Yes"), ("No", "No")])
     budget = models.IntegerField(default=0, blank=True, null=True)
-    start_date = models.DateField(default=date.today, blank=True, null=True)
-    message = models.TextField(max_length=1200, blank=True)
+    start_date = models.DateField(default=None, null=True, blank=True)
+    message = models.TextField(default=timezone.now, max_length=1200, blank=True)
 
     def __str__(self):
         return f"{self.name}, {self.lastname}"
@@ -143,13 +111,57 @@ class ClientInformation(models.Model):
     class Meta:
         verbose_name_plural = "Client information"
 
+class ProjectModel(models.Model):
+    name = models.CharField(max_length=100, default="Project", blank=False)
+    slug = models.SlugField(unique=True, blank=True)
+    cover = models.ImageField(upload_to="project_covers/", null=True)
+    review = models.CharField(max_length=200, blank=False, null=True)
+    description = models.TextField(max_length=400, blank=False)
+    strategy = models.TextField(max_length=1000, blank=False)
+    stat_one = models.CharField(max_length=10, blank=False)
+    text_one = models.CharField(max_length=25, blank=False)
+    stat_two = models.CharField(max_length=10, blank=False)
+    text_two = models.CharField(max_length=25, blank=False)
+    stat_three = models.CharField(max_length=10, blank=False)
+    text_three = models.CharField(max_length=25, blank=False)
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+    class Meta:
+        verbose_name_plural = "Projects"
+
+class ProjectImagesModel(models.Model):
+    name = models.CharField(max_length=100, default="Project photo", blank=False)
+    project = models.ForeignKey(ProjectModel, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='project_images/')
+    image_slug = models.SlugField(default="", blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Project images"
+
+class ProjectVideosModel(models.Model):
+    name = models.CharField(max_length=100, default="Project video", blank=False)
+    project = models.ForeignKey(ProjectModel, on_delete=models.CASCADE)
+    video = models.FileField(upload_to='projects_videos/')
+
+    def __str__(self):
+        return  self.name
+    class Meta:
+        verbose_name_plural = "Project videos"
 
 def resize_image(image_field, new_width, new_height):
     if image_field:
         img = Image.open(image_field.path)
         img = img.resize((new_width, new_height), Image.ANTIALIAS)
         img.save(image_field.path)
-
 
 @receiver(pre_delete, sender=AboutPageModel)
 def delete_images(sender, instance, **kwargs):
@@ -167,3 +179,11 @@ def delete_images(sender, instance, **kwargs):
     instance.service_image_two.delete(False)
     instance.service_image_three.delete(False)
     instance.service_image_four.delete(False)
+
+@receiver(pre_delete, sender=ProjectImagesModel)
+def delete_images(sender, instance, **kwargs):
+    instance.image.delete(False)
+
+@receiver(pre_delete, sender=ProjectVideosModel)
+def delete_images(sender, instance, **kwargs):
+    instance.video.delete(False)

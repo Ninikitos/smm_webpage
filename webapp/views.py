@@ -1,7 +1,13 @@
+from datetime import datetime
 from django.shortcuts import render
-from django.template.loader import render_to_string
 
-from .models import AboutPageModel, ServicePageModel, CoachingPageModel, ClientInformation
+from .models import (AboutPageModel,
+                     ServicePageModel,
+                     CoachingPageModel,
+                     ClientInformation,
+                     ProjectModel,
+                     ProjectImagesModel,
+                     ProjectVideosModel)
 from django.http import HttpResponseRedirect
 
 from django.core.mail import EmailMessage
@@ -9,7 +15,10 @@ from django.conf import settings
 
 # Create your views here.
 def index(request):
-    return render(request, "webapp/index.html", {})
+    projects = ProjectModel.objects.all().order_by('-id')[:3]
+    return render(request, "webapp/index.html", {
+        'projects': projects
+    })
 
 def about_us(request):
     about_content = AboutPageModel.objects.first()
@@ -26,7 +35,28 @@ def services(request):
 
 
 def portfolio(request):
-    return render(request, "webapp/portfolio.html", {})
+    projects = ProjectModel.objects.all().order_by('-id')[:4]
+    if  projects.exists():
+        print("Project: ", projects[0].slug)
+        return render(request, "webapp/portfolio.html", {
+            'projects': projects
+        })
+    else:
+        no_projects = "You need to add projects"
+        return render(request, "webapp/portfolio.html", {
+            'no_projects': no_projects
+        })
+
+
+def project_detail(request, slug):
+    project = ProjectModel.objects.get(slug=slug)
+    images = ProjectImagesModel.objects.filter(project=project)
+    videos = ProjectVideosModel.objects.filter(project=project)
+    return render(request, 'webapp/project.html', {
+        'project': project,
+        'images': images,
+        'videos': videos
+    })
 
 
 def coaching(request):
@@ -51,6 +81,8 @@ def contact(request):
         is_social_agency = 'Yes' if is_social_agency == 'yes' else 'No'
         budget = request.POST.get('budget', None)
         start_date = request.POST.get('start-date', None)
+        if start_date == "":
+            start_date = datetime.now().strftime("%Y-%m-%d")
         message = request.POST.get('message', '')
 
         # Create an instance of the model and save the data
@@ -70,12 +102,13 @@ def contact(request):
             message=message
         )
         # Email to predefined address with all data information
-        message = f"New client: {name} {lastname} completed a form."
+        message = (f"{name} {lastname} just completed a contact form. Client's email address is {email} "
+                   f"and a phone number {phone}. Rest information could be found in admin page of your website. \n\n")
         email = EmailMessage(
             'New client request from a website',
                 message,
             settings.EMAIL_HOST_USER,
-            ['ninikitos90@gmail.com' ,'alina.banit11@gmail.com']
+            ['chhenney@gmail.com']
         )
         email.send()
         return HttpResponseRedirect("thank_you")

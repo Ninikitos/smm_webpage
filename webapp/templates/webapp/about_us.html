@@ -41,7 +41,9 @@
                         {{ about_content.about_description|safe }}
                     </p>
                 </div>
-                <button class="cta__btn-style">Let's work</button>
+                <a href="{% url 'contact' %}">
+                    <button class="cta__btn-style">Let's work</button>
+                </a>
             </div>
             <div class="about__media-content">
                 <div class="about__media-left">
@@ -53,6 +55,7 @@
                 </div>
             </div>
         </div>
+        <span class="about-page__decor"></span>
     </section>
-    <span class="about-page__decor"></span>
+
 {% endblock %}

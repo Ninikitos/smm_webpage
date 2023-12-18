@@ -10,8 +10,9 @@ urlpatterns = [
     path('portfolio', views.portfolio, name='portfolio'),
     path('coaching', views.coaching, name='coaching'),
     path('contact', views.contact, name='contact'),
-    path('thank_you', views.thank_you, name='thank-you')
+    path('thank_you', views.thank_you, name='thank-you'),
+    path('portfolio/<slug:slug>', views.project_detail, name='project-detail')
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

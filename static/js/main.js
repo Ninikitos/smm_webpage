@@ -70,19 +70,70 @@ menuLinkFive.addEventListener('click', () => {
     menuLinkFive.classList.toggle('reveal');
 });
 
-// Custom form select
-const arrowDownServices = document.querySelector("#arrow-down-services");
-const selectButtonServices = document.querySelector("#custom-select-services");
-const selectionContainerServices = document.querySelector("#container-services");
-selectButtonServices.addEventListener('click', () => {
-    selectionContainerServices.classList.toggle("open-selection");
-    arrowDownServices.classList.toggle("open-arrow");
-})
+const servicesInput = document.getElementById("services-drop-down");
+const arrowDownServices = document.getElementById("arrow-down-services");
+const selectionContainerServices = document.getElementById("container-services");
 
-const arrowDownSocials = document.querySelector("#arrow-down-socials");
-const selectButtonSocials = document.querySelector("#custom-select-socials");
-const selectionContainerSocials = document.querySelector("#container-socials");
-selectButtonSocials.addEventListener('click', () => {
-    selectionContainerSocials.classList.toggle("open-selection");
-    arrowDownSocials.classList.toggle("open-arrow");
-})
+if (servicesInput && arrowDownServices && selectionContainerServices) {
+    servicesInput.addEventListener('click', () => {
+        selectionContainerServices.classList.toggle("open-selection");
+        arrowDownServices.classList.toggle("open-arrow");
+    });
+}
+
+const socialInput = document.getElementById("social-drop-down");
+const arrowDownSocials = document.getElementById("arrow-down-socials");
+const selectionContainerSocials = document.getElementById("container-socials");
+if (socialInput && arrowDownSocials && selectionContainerSocials) {
+    socialInput.addEventListener('click', () => {
+        selectionContainerSocials.classList.toggle("open-selection");
+        arrowDownSocials.classList.toggle("open-arrow");
+    });
+}
+
+// Open a light box for images
+function openLightbox(imgSrc) {
+    document.getElementById('lightbox-img').src = imgSrc;
+    document.getElementById('lightbox').classList.add('show');
+    document.getElementById('lightbox').addEventListener('click', handleLightboxClick);
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('show');
+    document.getElementById('lightbox').removeEventListener('click', handleLightboxClick);
+}
+
+function handleLightboxClick(event) {
+    if (event.target === document.getElementById('lightbox') || event.target.classList.contains('close')) {
+        closeLightbox();
+    }
+}
+
+// Play and Stop video on Project page
+let currentVideo = null;
+
+function togglePlayPause(videoId) {
+    const video = document.getElementById(`video_${videoId}`);
+    const playButton = document.getElementById(`play_button_${videoId}`);
+
+    if (currentVideo !== video && currentVideo !== null && !currentVideo.paused) {
+        currentVideo.pause();
+        const prevPlayButton = document.querySelector(`#play_button_${currentVideo.id.split('_')[1]}`);
+        prevPlayButton.style.display = 'block'; // Show play button for previous video
+    }
+
+    video.addEventListener('click', () => {
+        if (currentVideo === video && video.click) {
+            video.pause();
+            playButton.style.display = 'block'; // Show play button when video is paused
+            currentVideo = video.paused ? null : video; // Update currentVideo accordingly
+        }
+    })
+
+    if (video.paused) {
+        video.play();
+        playButton.style.display = 'none'; // Hide play button when video is playing
+        currentVideo = video.paused ? null : video; // Update currentVideo accordingly
+    }
+}
+

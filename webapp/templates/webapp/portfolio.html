@@ -10,5 +10,52 @@
 {% endblock %}
 
 {% block main_content %}
-	<h1>PORTFOLIO</h1>
+    <section class="portfolio__header">
+        <div class="contact__title">
+            <h2 class="section__title section__title_bkg_accent-two">Portfolio</h2>
+            <span class="about__title-bkg"></span>
+        </div>
+        <div class="contact__text">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </div>
+        <span class="about__decor-start portfolio__decor rotation"></span>
+    </section>
+    <section class="portfolio__projects">
+        <ul class="portfolio__list">
+        {% if projects %}
+            {% for project in projects %}
+            	<li class="portfolio__card">
+                    <a href="{% url 'project-detail' slug=project.slug %}">
+                        <div class="portfolio__image-container">
+                            <img src="../../../media/{{ project.cover }}" alt="photo: Super project" class="portfolio__image">
+                        </div>
+                        <h3 class="portfolio__title">{{ project.name }}</h3>
+                    </a>
+                </li>
+            {% endfor %}
+        {% else %}
+            <h3>{{ no_projects }}</h3>
+        {% endif %}
+        </ul>
+        {% if projects|length > 4 %}
+            <button class="cta__btn-style portfolio__cta">Show more</button>
+        {% endif %}
+    </section>
 {% endblock %}

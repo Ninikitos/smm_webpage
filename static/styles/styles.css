@@ -26,6 +26,7 @@ header{
 }
 main{
     position: relative;
+    animation: transitionIn .9s ease;
 }
 h1, h2 {
     font-family: "Melodrama", sans-serif;
@@ -48,18 +49,17 @@ h1, h2 {
 .link__hover_active:hover{
     background: linear-gradient(to bottom, transparent 60%, var(--accent-one) 50%);
 }
-
-
 /*======PAGE-TRANSITION======*/
-.transition-fade{
-    opacity: 1;
-    transition: 800ms;
+@keyframes transitionIn {
+    from  {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
-html.is-animating .transition-fade{
-    opacity: 0;
-}
-
-
 /*======HEADER======*/
 nav{
     position: relative;
@@ -233,7 +233,6 @@ nav{
     right: 15%;
     background: url("../img/hyper_media_pro_decor_round.png") center / cover no-repeat;
 }
-
 /*======FOOTER======*/
 footer{
     background: var(--footer-background);

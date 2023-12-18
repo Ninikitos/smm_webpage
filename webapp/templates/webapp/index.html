@@ -95,69 +95,28 @@
         </div>
         <div class="clients__content-wrapper">
             <ul class="clients__projects">
-                <li class="flip-card">
-                    <div class="flip-card-inner">
+                {% for project in projects %}
+                	<li class="flip-card">
+                        <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="flip-card-img">
-                                <img src="../../static/webapp/img/index/project/hyper_media_pro_project.png" alt="Avatar">
+                                <img src="../../../media/{{ project.cover }}" alt="Avatar">
                             </div>
-                            <h3 class="flip-card-title">LA’AVIN</h3>
+                            <h3 class="flip-card-title">{{ project.name }}</h3>
                         </div>
                         <div class="flip-card-back">
                             <div class="flip-card-text">
                                 <p>
-                                    “We are really impressed with the quality
-                                    of content and extraordinary ideas which were used.
-                                    If you are looking to hire a firm to help with Social Media Marketing,
-                                    we strongly recommend this company”
+                                    {{ project.review }}
                                 </p>
                             </div>
-                            <button class="cta__btn-style">Read completely</button>
+                            <a href="{% url 'project-detail' slug=project.slug %}">
+                                <button class="cta__btn-style">Read completely</button>
+                            </a>
                         </div>
                     </div>
-                </li>
-                <li class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="flip-card-img">
-                                <img src="../../static/webapp/img/index/project/hyper_media_pro_project.png" alt="Avatar">
-                            </div>
-                            <h3 class="flip-card-title">LA’AVIN</h3>
-                        </div>
-                        <div class="flip-card-back">
-                            <div class="flip-card-text">
-                                <p>
-                                    “We are really impressed with the quality
-                                    of content and extraordinary ideas which were used.
-                                    If you are looking to hire a firm to help with Social Media Marketing,
-                                    we strongly recommend this company”
-                                </p>
-                            </div>
-                            <button class="cta__btn-style">Read completely</button>
-                        </div>
-                    </div>
-                </li>
-                <li class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="flip-card-img">
-                                <img src="../../static/webapp/img/index/project/hyper_media_pro_project.png" alt="Avatar">
-                            </div>
-                            <h3 class="flip-card-title">LA’AVIN</h3>
-                        </div>
-                        <div class="flip-card-back">
-                            <div class="flip-card-text">
-                                <p>
-                                    “We are really impressed with the quality
-                                    of content and extraordinary ideas which were used.
-                                    If you are looking to hire a firm to help with Social Media Marketing,
-                                    we strongly recommend this company”
-                                </p>
-                            </div>
-                            <button class="cta__btn-style">Read completely</button>
-                        </div>
-                    </div>
-                </li>
+                    </li>
+                {% endfor %}
             </ul>
         </div>
         <div class="marquee__wrapper">
@@ -184,7 +143,9 @@
             <h2 class="info__title">
                 Get noticed, get connected, and get ahead with our social media mastery
             </h2>
-            <button class="cta__btn-style">Transform My Online Presence</button>
+            <a href="{% url 'contact' %}">
+                <button class="cta__btn-style">Transform My Online Presence</button>
+            </a>
             <span class="info__decor_one rotation"></span>
             <span class="info__decor_two"></span>
         </div>

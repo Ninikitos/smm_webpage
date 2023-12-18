@@ -4,10 +4,12 @@
             <button class="header__menu link__hover">menu</button>
         </div>
         <a class="header__logo" href="/" >hypermedia</a>
-        <div class="header__cta">
-            <p class="header__text">Boost My Brand Now!</p>
-            <button class="header__btn-cta">→</button>
-        </div>
+        <a href="{% url 'contact' %}">
+            <div class="header__cta">
+                <p class="header__text">Boost My Brand Now!</p>
+                <button class="header__btn-cta">→</button>
+            </div>
+        </a>
         <div class="header__mob">
             <ul class="header__mob-items">
                 <li class="header__mob-item" id="menu-item-1">

@@ -14,14 +14,10 @@
 </head>
 <body>
     <header>{% include 'header.html' %}</header>
-    <main class="transition-fade" id="swup">
+    <main>
         {% block main_content %}{% endblock %}
     </main>
     <footer>{% include 'footer.html' %}</footer>
-    <script src="https://unpkg.com/swup@4"></script>
-    <script>
-        const swup = new Swup();
-    </script>
     <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
