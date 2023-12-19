@@ -7,7 +7,8 @@ from .models import (AboutPageModel,
                      ClientInformation,
                      ProjectModel,
                      ProjectImagesModel,
-                     ProjectVideosModel)
+                     ProjectVideosModel,
+                     ProjectMediaStatModel)
 from django.http import HttpResponseRedirect
 
 from django.core.mail import EmailMessage
@@ -26,13 +27,11 @@ def about_us(request):
         'about_content': about_content
     })
 
-
 def services(request):
     service_content = ServicePageModel.objects.first()
     return render(request, "webapp/services.html", {
         'service_content': service_content
     })
-
 
 def portfolio(request):
     projects = ProjectModel.objects.all().order_by('-id')[:4]
@@ -47,24 +46,23 @@ def portfolio(request):
             'no_projects': no_projects
         })
 
-
 def project_detail(request, slug):
     project = ProjectModel.objects.get(slug=slug)
     images = ProjectImagesModel.objects.filter(project=project)
     videos = ProjectVideosModel.objects.filter(project=project)
+    media_stats = ProjectMediaStatModel.objects.filter(project=project)
     return render(request, 'webapp/project.html', {
         'project': project,
         'images': images,
-        'videos': videos
+        'videos': videos,
+        'media_stats': media_stats
     })
-
 
 def coaching(request):
     coaching_content = CoachingPageModel.objects.first()
     return render(request, "webapp/coaching.html", {
         'coaching_content': coaching_content
     })
-
 
 def contact(request):
     if request.method == 'POST':
@@ -114,7 +112,6 @@ def contact(request):
         return HttpResponseRedirect("thank_you")
     else:
         return render(request, "webapp/contact.html")
-
 
 def thank_you(request):
     return render(request, 'webapp/thank_you.html')

@@ -124,6 +124,9 @@ class ProjectModel(models.Model):
     text_two = models.CharField(max_length=25, blank=False)
     stat_three = models.CharField(max_length=10, blank=False)
     text_three = models.CharField(max_length=25, blank=False)
+    photo_content_description = models.TextField(default="")
+    video_content_description = models.TextField(default="")
+    media_stat_content_description = models.TextField(default="")
 
     def __str__(self):
         return self.name
@@ -136,7 +139,7 @@ class ProjectModel(models.Model):
         verbose_name_plural = "Projects"
 
 class ProjectImagesModel(models.Model):
-    name = models.CharField(max_length=100, default="Project photo", blank=False)
+    name = models.CharField(max_length=200, default="Project photo", blank=False)
     project = models.ForeignKey(ProjectModel, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='project_images/')
     image_slug = models.SlugField(default="", blank=True)
@@ -148,7 +151,7 @@ class ProjectImagesModel(models.Model):
         verbose_name_plural = "Project images"
 
 class ProjectVideosModel(models.Model):
-    name = models.CharField(max_length=100, default="Project video", blank=False)
+    name = models.CharField(max_length=200, default="Project video", blank=False)
     project = models.ForeignKey(ProjectModel, on_delete=models.CASCADE)
     video = models.FileField(upload_to='projects_videos/')
 
@@ -156,6 +159,15 @@ class ProjectVideosModel(models.Model):
         return  self.name
     class Meta:
         verbose_name_plural = "Project videos"
+
+class ProjectMediaStatModel(models.Model):
+    name = models.CharField(max_length=200, default="Project media statistics", blank=False)
+    project = models.ForeignKey(ProjectModel, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='projects_media_stat/')
+    image_slug = models.SlugField(default="", blank=True)
+
+    class Meta:
+        verbose_name_plural = "Project media stat"
 
 def resize_image(image_field, new_width, new_height):
     if image_field:
@@ -187,3 +199,7 @@ def delete_images(sender, instance, **kwargs):
 @receiver(pre_delete, sender=ProjectVideosModel)
 def delete_images(sender, instance, **kwargs):
     instance.video.delete(False)
+
+@receiver(pre_delete, sender=ProjectMediaStatModel)
+def delete_images(sender, instance, **kwargs):
+    instance.image.delete(False)

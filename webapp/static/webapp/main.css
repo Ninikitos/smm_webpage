@@ -545,14 +545,13 @@
 .services__block-title{
     position: relative;
     max-width: 500px;
-    margin-bottom: 35px;
+    margin-bottom: 60px;
 }
 .service__extra-title {
     text-transform: lowercase;
     z-index: 1;
     position: absolute;
-    display: inline-block;
-    top: -30px;
+    top: 180px;
     left: 40%;
     font-size: 32px;
     line-height: 1.2;
@@ -563,12 +562,13 @@
     content: "";
     position: absolute;
     display: inline-block;
-    left: -25%;
-    width: 150%;
+    left: 50%;
+    bottom: 50%;
+    width: 120%;
     height: 45px;
     background-color: var(--accent-one);
     border: 1px solid var(--main);
-    transform: rotate(-3deg);
+    transform: rotate(-3deg) translate(-50%, 50%);
     border-radius: 50%;
     z-index: -1;
 }
@@ -754,7 +754,7 @@ form span{
     width: 200px;
     grid-column: span 2;
     display: flex;
-    justify-content: center; /* Center horizontally */
+    justify-content: center;
     align-items: center;
 }
 
@@ -823,13 +823,17 @@ form span{
 }
 /*======PROJECT-PAGE======*/
 .project__section{
+    display: flex;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 10px;
-    margin-top: 120px;
-    margin-bottom: 78px;
+    height: calc(100vh - 60px);
+}
+.project_header{
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .project__sub-title{
     display: inline-block;
@@ -873,6 +877,34 @@ form span{
     background: var(--accent-one);
     transform: translate(-50%, -95%) rotate(-5.19deg);
 }
+.project__stat-item:hover > .project__stat-num::before {
+    animation: rotateAnimation 1s forwards;
+}
+
+@keyframes rotateAnimation {
+    0% {
+        transform: translate(-50%, -95%) rotate(-5.19deg);
+    }
+    50% {
+        transform: translate(-50%, -95%) rotate(10deg);
+    }
+    100% {
+        transform: translate(-50%, -95%) rotate(10deg);
+    }
+}
+
+.project__stat-item:not(:hover) > .project__stat-num::before {
+    animation: rotateBackAnimation 0.5s forwards;
+}
+
+@keyframes rotateBackAnimation {
+    0% {
+        transform: translate(-50%, -95%) rotate(10deg);
+    }
+    100% {
+        transform: translate(-50%, -95%) rotate(-5.19deg);
+    }
+}
 .project__stat-title{
     margin-top: 10px;
 }
@@ -880,14 +912,9 @@ form span{
     display: flex;
     flex-direction: column;
 }
-.photo__content{
+.media__content{
     max-width: 1200px;
-    margin: 0 auto 84px;
-    padding: 0 10px;
-}
-.video__content{
-    max-width: 1200px;
-    margin: 0 auto 47px;
+    margin: 0 auto 60px;
     padding: 0 10px;
 }
 /*======PROJECT-PAGR-SLIDER======*/
@@ -902,19 +929,16 @@ form span{
 .swiper.my-swiper_video{
     height: 679px;
 }
+.swiper.my-swiper_media_stat{
+    height: 679px;
+}
 .swiper-slide {
     display: inline-block;
-    width: 394px;
-    height: 502px;
     background-color: #424852;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     object-fit: cover;
-}
-.swiper-slide.video__slide{
-    width: 386px;
-    height: 679px;
 }
 .video__cover{
     max-height: 100%;
@@ -942,6 +966,7 @@ form span{
     border: 1px solid var(--main);
     border-radius: 50%;
     background: var(--accent-one);
+    transition: transform 0.3s ease;
     transform: translate(-50%, -50%) rotate(-5.19deg);
 }
 .swiper-slide.image-hover{
@@ -951,6 +976,31 @@ form span{
 .swiper-slide.image-hover:hover{
     cursor: pointer;
     transform: scale(1.02);
+}
+.swiper-slide.image-hover:hover *::before{
+    animation: rotateAnimationVideo 1s forwards;
+}
+.swiper-slide.image-hover:not(:hover) > *::before {
+    animation: rotateBackAnimationVideo 0.5s forwards;
+}
+@keyframes rotateAnimationVideo {
+    0% {
+        transform: translate(-50%, -50%) rotate(-5.19deg); /* Starting position */
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(10deg); /* Rotate to 10 degrees halfway */
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(10deg); /* Staying at 10 degrees */
+    }
+}
+@keyframes rotateBackAnimationVideo {
+    0% {
+        transform: translate(-50%, -50%) rotate(10deg); /* Starting from 10 degrees */
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(-5.19deg); /* Returning to the initial rotation */
+    }
 }
 .swiper-button-next:after, .swiper-button-prev:after{
     display: none;
@@ -989,6 +1039,28 @@ form span{
     height: 40px;
 }
 .nav-video-button-prev.swiper-nav-custom{
+    background: linear-gradient(to bottom, var(--accent-one) 50%, var(--accent-two) 50%);
+    background-size: 100% 200%;
+    background-position: top left;
+    border-radius: 100%;
+    border: 1px solid var(--main);
+    transition: all .2s ease-out;
+    color: var(--main);
+    width: 40px;
+    height: 40px;
+}
+.nav-media-stat-button-next.swiper-nav-custom{
+    background: linear-gradient(to bottom, var(--accent-one) 50%, var(--accent-two) 50%);
+    background-size: 100% 200%;
+    background-position: top left;
+    border-radius: 100%;
+    border: 1px solid var(--main);
+    transition: all .2s ease-out;
+    color: var(--main);
+    width: 40px;
+    height: 40px;
+}
+.nav-media-stat-button-prev.swiper-nav-custom{
     background: linear-gradient(to bottom, var(--accent-one) 50%, var(--accent-two) 50%);
     background-size: 100% 200%;
     background-position: top left;

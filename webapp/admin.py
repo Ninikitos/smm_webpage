@@ -9,7 +9,8 @@ from .models import (AboutPageModel,
                      ClientInformation,
                      ProjectModel,
                      ProjectImagesModel,
-                     ProjectVideosModel)
+                     ProjectVideosModel,
+                     ProjectMediaStatModel)
 
 def update_slug_from_image(obj, image_fields, slug_fields):
     for i, image_field in enumerate(image_fields):
@@ -83,6 +84,15 @@ class ProjectVideosAdmin(admin.ModelAdmin):
 class ClientInformationAdmin(admin.ModelAdmin):
     list_display = ('name', 'lastname', 'email', 'phone')
 
+class ProjectMediaStatAdmin(admin.ModelAdmin):
+    list_display = ('name', 'project_name')
+    list_filter = ('project__name',)
+
+    def project_name(self, obj):
+        return obj.project.name if obj.project else ''
+
+    project_name.short_description = 'Project Name'
+
 admin.site.register(AboutPageModel, AboutPageAdmin)
 admin.site.register(ServicePageModel, ServicePageAdmin)
 admin.site.register(CoachingPageModel, CoachingPageAdmin)
@@ -90,4 +100,5 @@ admin.site.register(ClientInformation, ClientInformationAdmin)
 admin.site.register(ProjectModel)
 admin.site.register(ProjectImagesModel, ProjectImagesAdmin)
 admin.site.register(ProjectVideosModel, ProjectVideosAdmin)
+admin.site.register(ProjectMediaStatModel, ProjectMediaStatAdmin)
 
