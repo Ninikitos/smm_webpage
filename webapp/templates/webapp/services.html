@@ -44,7 +44,9 @@
                         {{ service_content.service_list_one|safe }}
                     </ul>
                     <div class="service__btn-wrapper">
-                        <button class="cta__btn-style">Start My Social Success</button>
+                        <a href="{% url 'contact' %}">
+                            <button class="cta__btn-style">Start My Social Success</button>
+                        </a>
                     </div>
                 </div>
             </li>
@@ -53,13 +55,15 @@
                     <span class="service__content-star"></span>
                     <h2 class="services__block-title">
                         <span class="service__extra-title">&&nbsp;consulting</span>
-                        {{ service_content.service_title_two }}
+                        {{ service_content.service_title_two|safe }}
                     </h2>
                     <ul class="service__list">
                         {{ service_content.service_list_two|safe }}
                     </ul>
                     <div class="service__btn-wrapper">
-                        <button class="cta__btn-style">Start My Social Success</button>
+                        <a href="{% url 'contact' %}">
+                            <button class="cta__btn-style">Start My Social Success</button>
+                        </a>
                     </div>
                 </div>
                 <div class="service__image-wrapper">
@@ -81,7 +85,9 @@
                         {{ service_content.service_list_three|safe }}
                     </ul>
                     <div class="service__btn-wrapper">
-                        <button class="cta__btn-style">Start My Social Success</button>
+                        <a href="{% url 'coaching' %}">
+                            <button class="cta__btn-style">Start My Social Success</button>
+                        </a>
                     </div>
                 </div>
             </li>
@@ -96,7 +102,9 @@
                         {{ service_content.service_list_four|safe }}
                     </ul>
                     <div class="service__btn-wrapper">
-                        <button class="cta__btn-style">Start My Social Success</button>
+                        <a href="{% url 'contact' %}">
+                            <button class="cta__btn-style">Start My Social Success</button>
+                        </a>
                     </div>
                 </div>
                 <div class="service__image-wrapper">

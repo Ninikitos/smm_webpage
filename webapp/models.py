@@ -7,17 +7,6 @@ from django.dispatch import receiver
 from django.utils.text import slugify
 
 
-# class HomePageModel(models.Model):
-#     # Section One
-#     section_one_text = models.TextField()
-#
-#     # Section Two
-#     section_two_title = models.CharField(max_length=1200)
-#
-#     def __str__(self):
-#         return "Home page"
-
-
 class AboutPageModel(models.Model):
     about_title = models.CharField(max_length=100)
     about_description = models.TextField()
